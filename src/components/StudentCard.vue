@@ -1,7 +1,7 @@
 <template>
-  <v-card class="elevation-4 student-card pt-5 pb-1 ma-0"
+  <v-card class="student-card pt-5 pb-1 ma-0"
     min-height="150px"
-    :disabled="!value.active"
+    :class="value.active ? 'elevation-4' : 'disabled elevation-0'"
     width="300px">
     <v-list-item class="user-info">
       <v-list-item-avatar class="mr-2" size="64px" color="accent">
@@ -33,7 +33,8 @@
           >
             <v-btn
             icon color="accent"
-            class="elevation-4 mr-1"
+            :class="value.active ? 'elevation-4' : ''"
+            class="mr-1"
             @click="edit(value.index)"
             >
               <v-icon>edit</v-icon>

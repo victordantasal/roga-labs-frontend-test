@@ -7,7 +7,9 @@ const state = {
 
 // getters
  const getters = {
-
+   hasStudents (state) {
+     return state.all.length > 0
+   }
  }
 
  // actions

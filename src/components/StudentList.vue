@@ -45,6 +45,15 @@
       <student-card :value="{...student, index}"/>
     </v-col>
 
+    <v-col cols="12">
+      <v-alert outlined type="info" class="accent--text" dark v-if="!hasStudents">
+        Não há <strong>usuários</strong> cadastrados
+      </v-alert>
+      <v-alert outlined type="info" class="accent--text" dark v-else-if="!hasMatchedStudents">
+        Não há <strong>usuários</strong> com os <strong>critérios</strong> de busca utilizado
+      </v-alert>
+    </v-col>
+
     <!-- line breaker and spacer -->
     <v-col cols="12" class="my-5 py-5"/>
   </v-row>
@@ -52,7 +61,7 @@
 
 <script>
 import StudentCard from '@/components/StudentCard.vue'
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -86,9 +95,12 @@ export default {
   },
   computed: {
     ...mapState('students', ['all']),
+    ...mapGetters('students', ['hasStudents']),
+    hasMatchedStudents() {
+      return this.students.length > 0
+    },
 
     students() {
-      console.log('calculate')
       // first apply filter in all students
       const filtered = this.filterIndex < this.filters.length ?
         this.all.filter(this.filters[this.filterIndex].rule) :
