@@ -1,12 +1,13 @@
 <template>
   <v-container class="home background shadow" fluid pa-0 mt-5>
     <!-- top whitebar over shadow effect -->
-    <v-app-bar color="primary" dark maxHeight="64px" >
-      <div style="width:85%; position: relative; left:5%;" class="shadow">
-        <v-list-item v-ripple class="user-info shadow" @click="profileBtn" 
-          style="position: relative; float:right; maxWidth: 30%;">
+    <v-app-bar color="primary" dark max-height="64px" class="elevation-0 keepshadow px-2" >
+      <div style="width:85%; position: relative; left:5%;" class="elevation-24">
 
-          <v-list-item-avatar color="background">
+        <v-list-item v-ripple class="user-info elevation-8" @click="profileBtn"
+          style="position: relative; float:right; minWidth: 300px;">
+
+          <v-list-item-avatar color="background" size="64px">
             <v-img
               src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
             ></v-img>
@@ -54,5 +55,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  .v-toolbar__content {
+    padding: 0;
+  }
+  .keepshadow{
+    overflow: hidden;
+  }
+
+  .container.shadow {
+    box-shadow: 0px -2px 1px 0 rgba(100,150,217,0.75), 0px -3px 1px 0 grey,  0px 2px 1px 0 #6398DA, 0px 3px 1px 0 rgba(69,69,69,0.75)  !important;
+  }
+
+
 </style>
