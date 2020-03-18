@@ -23,7 +23,7 @@ const state = {
      })
    },
    editStudent({commit}, {payload}) {
-     commit('spliceStudent', {
+     commit('sliceStudent', {
        ...payload
      })
    },
@@ -48,8 +48,8 @@ const state = {
        active
      })
    },
-   spliceStudent (state, {lastExam, name, email, age, phoneNumber, active, index}) {
-     state.all.splice(index, 1, {
+   sliceStudent (state, {lastExam, name, email, age, phoneNumber, active, index}) {
+     state.all.slice(index, 1, {
        lastExam,
        name,
        email,
