@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import StudentsLayout from '@/layouts/StudentsLayout.vue'
 import StudentsListView from '@/views/StudentsList.vue'
-import StudentForm from '@/components/StudentForm.vue'
 
 Vue.use(Router)
 
