@@ -8,7 +8,7 @@ const state = {
 // getters
  const getters = {
    hasStudents (state) {
-     return state.all.length > 0
+     return (state.all || '').length > 0
    }
  }
 
@@ -24,7 +24,7 @@ const state = {
        active: true
      })
    },
-   editStudent({commit}, {payload}) {
+   editStudent({commit}, payload) {
      commit('sliceStudent', {
        ...payload
      })
@@ -50,8 +50,8 @@ const state = {
        active
      })
    },
-   sliceStudent (state, {lastExam, name, email, age, phoneNumber, active, index}) {
-     state.all.slice(index, 1, {
+   sliceStudent (state, {name, email, age, phoneNumber, active, lastExam, index}) {
+     state.all.splice(index, 1, {
        lastExam,
        name,
        email,

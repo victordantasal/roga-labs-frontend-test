@@ -1,6 +1,7 @@
 <template>
   <v-card class="student-card pt-5 pb-1 ma-0"
     min-height="150px"
+    :disabled="!value.active"
     :class="value.active ? 'elevation-4' : 'disabled elevation-0'"
     width="300px">
     <v-list-item class="user-info">
@@ -27,67 +28,66 @@
           <v-list-item-subtitle v-html="value.email"/>
           <v-list-item-subtitle v-html="value.age + ' anos ' + value.phoneNumber"/>
         </v-list-item-content>
+        <!-- buttons -->
         <v-col cols="5" class="pa-0"
           align="center"
           justify="end"
           >
-            <v-btn
-            icon color="accent"
-            :class="value.active ? 'elevation-4' : ''"
-            class="mr-1"
-            @click="edit(value.index)"
-            >
-              <v-icon>edit</v-icon>
-            </v-btn>
+          <!-- edit button -->
 
-            <!-- more button dropdown -->
-            <v-menu offset-y>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                icon small
-                color="accent"
-                v-on="on"
-                >
-                  <v-icon>more_horiz</v-icon>
-                </v-btn>
-              </template>
+          <edit-student-btn :index="value.index"/>
 
-              <v-list>
-                <v-list-item
-                  v-if="value.active"
-                  @click="setActive({index: value.index, active: false})"
-                >
-                  <v-list-item-title>Desativar</v-list-item-title>
-                </v-list-item>
+          <!-- more button dropdown -->
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn
+              icon small
+              color="accent"
+              v-on="on"
+              >
+                <v-icon>more_horiz</v-icon>
+              </v-btn>
+            </template>
 
-                <v-list-item
-                  v-else
-                  @click="setActive({index: value.index, active: true})"
-                >
-                  <v-list-item-title>Ativar</v-list-item-title>
-                </v-list-item>
+            <v-list>
+              <v-list-item
+                v-if="value.active"
+                @click="setActive({index: value.index, active: false})"
+              >
+                <v-list-item-title>Desativar</v-list-item-title>
+              </v-list-item>
 
-                <v-list-item
-                  @click="deleteStudent({index: value.index})"
-                >
-                  <v-list-item-title class="primary--text">Deletar <v-icon>close</v-icon></v-list-item-title>
-                </v-list-item>
+              <v-list-item
+                v-else
+                @click="setActive({index: value.index, active: true})"
+              >
+                <v-list-item-title>Ativar</v-list-item-title>
+              </v-list-item>
 
-              </v-list>
-            </v-menu>
+              <v-list-item
+                @click="deleteStudent({index: value.index})"
+              >
+                <v-list-item-title class="primary--text">Deletar <v-icon>close</v-icon></v-list-item-title>
+              </v-list-item>
+
+            </v-list>
+          </v-menu>
         </v-col>
       </v-list-item>
-      <!-- buttons -->
-
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+  import EditStudentBtn from './EditStudentBtn.vue'
   import {mapActions} from 'vuex'
   export default {
+    components: {'edit-student-btn': EditStudentBtn},
     name: 'studentCard',
     props: ['value'],
+    data: () => ({
+      dialog: false
+    }),
   methods: {
     ...mapActions('students', ['deleteStudent', 'setActive']),
     edit (index) {

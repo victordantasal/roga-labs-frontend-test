@@ -1,6 +1,8 @@
 <template>
   <v-app>
     <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+
+    <!-- call layouts -->
     <v-content>
       <router-view/>
     </v-content>
@@ -27,22 +29,6 @@
 <script>
 
 export default {
-  name: 'App',
-
-  data: () => ({
-    showProfile: false
-    //
-  }),
-  computed: {
-    teacher() {
-      return this.$store.state.teacher
-    }
-  },
-  methods: {
-    profileBtn () {
-      this.showProfile = !this.showProfile
-
-    }
-  }
+  name: 'App'
 };
 </script>
