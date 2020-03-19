@@ -29,19 +29,6 @@ export default new Router({
           component: StudentsListView
         }
       ]
-    },
-    {
-      // create student path
-      path: '/form',
-      name: 'AddStudentForm',
-      component: StudentForm
-    },
-    {
-      //edit student path with INDEX
-      path: '/form/:index',
-      name: 'EditStudentForm',
-      component: StudentForm,
-      props: true
     }
   ]
 })
